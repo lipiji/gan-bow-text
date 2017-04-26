@@ -14,8 +14,8 @@ lr = 0.001
 drop_rate = 0.
 batch_size = 100
 hidden_size = 300
-latent_size = 2
-iter_d = 5
+latent_size = 50
+iter_d = 1
 
 # try: sgd, momentum, rmsprop, adagrad, adadelta, adam, nesterov_momentum
 optimizer = "rmsprop"
@@ -84,4 +84,11 @@ if latent_size == 2:
             for k in xrange(top_w):
                 print i2w[ind[k]],
             print "\n"
-
+else:
+    for i in xrange(20):
+        z = model.noiser(latent_size)
+        y = model.generate(z)[0,:]
+        ind = np.argsort(-y)
+        for k in xrange(top_w):
+            print i2w[ind[k]],
+        print "\n"
