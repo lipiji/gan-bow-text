@@ -9,12 +9,12 @@ import sys
 import os
 import shutil
 from copy import deepcopy
-import theano.sandbox.cuda
+#import theano.sandbox.cuda
 
 # set use gpu programatically
-def use_gpu(gpu_id):
-    if gpu_id > -1:
-        theano.sandbox.cuda.use("gpu" + str(gpu_id))
+#def use_gpu(gpu_id):
+#    if gpu_id > -1:
+#        theano.sandbox.cuda.use("gpu" + str(gpu_id))
 
 def floatX(X):
     return np.asarray(X, dtype=theano.config.floatX)

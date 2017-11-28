@@ -37,8 +37,9 @@ class GAN():
         
         def generate(self, z):
             h = T.tanh(T.dot(z, self.Wg_zh) + self.bg_zh)
-            y = T.nnet.sigmoid(T.dot(h, self.Wg_hy) + self.bg_hy)
-            return y
+            y1 = T.dot(h, self.Wg_hy) + self.bg_hy
+            y2 = T.nnet.sigmoid(y1)
+            return y1, y2
 
     class Discriminator():
         def __init__(self, in_size, hidden_size):
@@ -76,7 +77,7 @@ class GAN():
         self.params_dis = D.params
         self.params_gen = G.params
 
-        g = G.generate(self.Z)
+        _, g = G.generate(self.Z)
         d1 = D.discriminate(self.X)
         d2 = D.discriminate(g)
 
