@@ -1,6 +1,6 @@
 #pylint: skip-file
 import os
-cudaid = 3
+cudaid = 0
 os.environ["THEANO_FLAGS"] = "device=cuda" + str(cudaid)
 
 import time
